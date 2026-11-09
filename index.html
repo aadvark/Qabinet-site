@@ -134,6 +134,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
   <div class="wrap features-head">
     <h2>What's inside</h2>
     <div class="nav">
+      <button type="button" id="toggle" aria-label="Pause auto-scroll"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="toggle-icon" d="M9 6v12M15 6v12"/></svg></button>
       <button type="button" id="prev" aria-label="Previous feature" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
       <button type="button" id="next" aria-label="Next feature"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
@@ -183,8 +184,35 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
     prev.disabled = track.scrollLeft < 4;
     next.disabled = track.scrollLeft + track.clientWidth > track.scrollWidth - 4;
   }
-  prev.addEventListener("click", function () { track.scrollBy({ left: -step() }); });
-  next.addEventListener("click", function () { track.scrollBy({ left: step() }); });
+  var DELAY = 7000, timer = null, held = false;
+  var toggle = document.getElementById("toggle"), icon = document.getElementById("toggle-icon");
+  var playing = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function advance() {
+    if (track.scrollLeft + track.clientWidth > track.scrollWidth - 4) track.scrollTo({ left: 0 });
+    else track.scrollBy({ left: step() });
+  }
+  function restart() {
+    clearInterval(timer);
+    timer = playing && !held && !document.hidden ? setInterval(advance, DELAY) : null;
+  }
+  function showState() {
+    icon.setAttribute("d", playing ? "M9 6v12M15 6v12" : "M8 5l11 7-11 7z");
+    toggle.setAttribute("aria-label", playing ? "Pause auto-scroll" : "Play auto-scroll");
+  }
+  toggle.addEventListener("click", function () { playing = !playing; showState(); restart(); });
+  function hold(v) { held = v; restart(); }
+  var area = track.closest(".features");
+  area.addEventListener("mouseenter", function () { hold(true); });
+  area.addEventListener("mouseleave", function () { hold(false); });
+  track.addEventListener("focusin", function () { hold(true); });
+  track.addEventListener("focusout", function () { hold(false); });
+  track.addEventListener("touchstart", function () { hold(true); }, { passive: true });
+  track.addEventListener("touchend", function () { hold(false); }, { passive: true });
+  document.addEventListener("visibilitychange", restart);
+  prev.addEventListener("click", function () { track.scrollBy({ left: -step() }); restart(); });
+  next.addEventListener("click", function () { track.scrollBy({ left: step() }); restart(); });
+  showState();
+  restart();
   track.addEventListener("scroll", sync, { passive: true });
   window.addEventListener("resize", sync);
   sync();
