@@ -26,6 +26,8 @@ a{color:inherit}
 .hero-copy{padding-bottom:88px}
 h1{margin:0;font-size:clamp(46px,7.1vw,88px);line-height:1;font-weight:600;letter-spacing:-.045em;max-width:11ch}
 .lede{margin:26px 0 0;font-size:22px;line-height:1.4;max-width:30em}
+.meta a{color:#fff}
+.update{display:inline-block;margin:22px 0 0;padding:10px 16px;border-radius:10px;background:var(--deep);font-size:17px}
 .get{display:inline-block;margin-top:36px;padding:17px 30px;border-radius:12px;background:var(--brass);color:var(--ink);font-size:19px;font-weight:600;text-decoration:none;transition:background .15s}
 .get:hover{background:var(--brass-lit)}
 .meta{margin:14px 0 0;font-size:16px;color:#DDF1EF}
@@ -98,12 +100,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;
 <header class="hero">
   <div class="wrap">
     <div class="top"><img src="assets/icon.svg" alt="">Qabinet</div>
+    <p class="update" id="update" role="status" hidden></p>
     <div class="hero-grid">
       <div class="hero-copy">
         <h1>Every file in its place.</h1>
         <p class="lede">Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use, with no ads.</p>
-        <a class="get" href="download/Qabinet-0.2.0.apk" download>Download for Android</a>
-        <p class="meta">Version 0.2.0 beta, 13 MB. Coming to Google Play.</p>
+        <a class="get" href="download/Qabinet-0.3.0.apk" download>Download for Android</a>
+        <p class="meta">Version 0.3.0 beta, 13 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
       </div>
       <div class="phone" role="img" aria-label="Qabinet Home screen showing pinned folders, storage and file categories">
         <div class="screen" aria-hidden="true">
@@ -181,13 +184,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;
         <li>Open it from your downloads. If Android asks, allow your browser to install apps.</li>
         <li>Open Qabinet and allow file access so it can show your folders.</li>
       </ol>
-      <a class="get small" href="download/Qabinet-0.2.0.apk" download>Download Qabinet 0.2.0</a>
+      <a class="get small" href="download/Qabinet-0.3.0.apk" download>Download Qabinet 0.3.0</a>
     </div>
-    <div class="note">
-      <h2>This is an early beta</h2>
-      <p>Keep a backup of anything important, and try locked folders on copies first.</p>
-      <p>If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
-      <p>To check your download, compare its SHA-256:<br><code>cb7c77e9a0c417fc0adeae2b2dd0d7b2f758572003268cc0b7f6bb98d0211701</code></p>
+    <div class="note" id="disclaimer">
+      <h2>Disclaimer</h2>
+      <p>Qabinet is an early beta and hasn't yet been tested on real phones. It may crash, misbehave or lose data.</p>
+      <p>It's provided as is, with no warranty of any kind, and you use it at your own risk. Kith + Keen isn't responsible for any loss of files or damage that results.</p>
+      <p>Back up anything important before you install it, and try locked folders on copies first. If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
+      <p>To check your download, compare its SHA-256:<br><code>7e0a410a922a352d73c6bcb09cd27a5877c92f76ad15cc71bba0b4082c5cb82d</code></p>
     </div>
   </div>
 </section>
@@ -199,5 +203,23 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;
     <span>Free for personal use. A commercial licence is coming with Qabinet Pro.</span>
   </div>
 </footer>
+<script>
+(function () {
+  var latest = "0.3.0";
+  var installed = new URLSearchParams(location.search).get("installed");
+  if (!installed || !/^\d+(\.\d+)*$/.test(installed)) return;
+  function parts(v) { return v.split(".").map(Number); }
+  var a = parts(installed), b = parts(latest), behind = false;
+  for (var i = 0; i < Math.max(a.length, b.length); i++) {
+    var x = a[i] || 0, y = b[i] || 0;
+    if (x !== y) { behind = x < y; break; }
+  }
+  var el = document.getElementById("update");
+  el.textContent = behind
+    ? "Version " + latest + " is available. You have " + installed + "."
+    : "You have the latest version, " + installed + ".";
+  el.hidden = false;
+})();
+</script>
 </body>
 </html>
