@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qabinet: a file manager for Android</title>
+<meta name="description" content="Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use.">
+<meta property="og:title" content="Qabinet: a file manager for Android">
+<meta property="og:description" content="Pin the folders you use most, lock the private ones and find the rest fast.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:Geist;src:url(assets/Geist-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Geist;src:url(assets/Geist-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Geist;src:url(assets/Geist-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{--teal:#0B7A75;--front:#0A6C68;--front-2:#096460;--deep:#07403E;--brass:#E0A638;--brass-lit:#F2C468;--paper:#F3F5F7;--ink:#12161D;--mid:#505A69;--line:#DFE4EA;--wrap:1120px}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--deep);color:var(--ink);font:400 18px/1.55 Geist,system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass-lit);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.hero{background:var(--teal);color:#fff;overflow:hidden}
+.top{display:flex;align-items:center;gap:12px;padding-top:26px;font-size:22px;font-weight:600;letter-spacing:-.4px}
+.top img{width:40px;height:40px;border-radius:10px;box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:64px;align-items:end;padding-top:56px}
+.hero-copy{padding-bottom:88px}
+h1{margin:0;font-size:clamp(46px,7.1vw,88px);line-height:1;font-weight:600;letter-spacing:-.045em;max-width:11ch}
+.lede{margin:26px 0 0;font-size:22px;line-height:1.4;max-width:30em}
+.get{display:inline-block;margin-top:36px;padding:17px 30px;border-radius:12px;background:var(--brass);color:var(--ink);font-size:19px;font-weight:600;text-decoration:none;transition:background .15s}
+.get:hover{background:var(--brass-lit)}
+.meta{margin:14px 0 0;font-size:16px;color:#DDF1EF}
+.phone{width:330px;height:600px;margin-bottom:-90px;padding:12px 12px 0;border-radius:44px 44px 0 0;background:#07403E;align-self:end}
+.screen{height:100%;padding:22px 16px;border-radius:33px 33px 0 0;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.3;overflow:hidden}
+.bar{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:600;letter-spacing:-.3px}
+.bar img{width:26px;height:26px;border-radius:7px}
+.find{margin-top:14px;padding:12px 15px;border-radius:22px;background:#E7EBF0;color:var(--mid);font-size:14px}
+.screen h2{margin:18px 0 9px;font-size:14px;font-weight:600}
+.pins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;font-size:11.5px;font-weight:500}
+.pin i{display:flex;align-items:center;justify-content:center;height:56px;margin-bottom:6px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.pin svg{width:27px;height:27px}
+.store{margin-top:16px;padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:#fff}
+.store div{display:flex;justify-content:space-between;font-weight:600}
+.store span{font-weight:400;color:var(--mid)}
+.store b{display:block;height:7px;margin-top:9px;border-radius:4px;background:linear-gradient(90deg,var(--teal) 64%,#E7EBF0 64%)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:13px 6px;margin-top:17px;text-align:center;font-size:11.5px}
+.tiles i{display:flex;align-items:center;justify-content:center;width:42px;height:42px;margin:0 auto 5px;border-radius:13px;background:#DDF1EF;color:var(--teal)}
+.tiles svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.cabinet{position:relative;background:var(--deep)}
+.drawer{background:var(--front);border-top:2px solid var(--deep);color:#fff}
+.drawer:nth-child(even){background:var(--front-2)}
+.drawer summary{list-style:none;cursor:pointer}
+.drawer summary::-webkit-details-marker{display:none}
+.front{display:grid;grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr);align-items:center;min-height:112px}
+.front h2{margin:0;font-size:clamp(23px,2.7vw,32px);line-height:1.15;font-weight:600;letter-spacing:-.025em}
+.pull{display:block;height:15px;border-radius:8px;background:var(--brass);box-shadow:0 5px 0 rgba(0,0,0,.26);transition:background .15s,transform .2s}
+.drawer summary:hover .pull{background:var(--brass-lit)}
+.state{justify-self:end;font-size:16px;color:#DDF1EF}
+.drawer[open] .pull{transform:translateY(3px)}
+.drawer .closed-word{display:inline}.drawer .open-word{display:none}
+.drawer[open] .closed-word{display:none}.drawer[open] .open-word{display:inline}
+.inside{background:var(--paper);color:var(--ink);box-shadow:inset 0 14px 14px -14px rgba(0,0,0,.5)}
+.inside .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;padding-top:44px;padding-bottom:50px}
+.inside p{margin:0;font-size:22px;line-height:1.38;letter-spacing:-.01em;max-width:24em}
+.inside ul{margin:0;padding:0;list-style:none}
+.inside li{padding:10px 0;border-top:1px solid var(--line)}
+.inside li:first-child{border-top:0;padding-top:2px}
+.after{background:var(--paper);color:var(--ink);border-top:2px solid var(--deep)}
+.after .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;padding-top:76px;padding-bottom:80px}
+.after h2{margin:0 0 22px;font-size:38px;line-height:1.1;font-weight:600;letter-spacing:-.03em}
+ol{margin:0;padding-left:1.3em}
+ol li{margin:0 0 13px;padding-left:.2em}
+ol li::marker{font-weight:600;color:var(--teal)}
+.get.small{margin-top:14px;background:var(--teal);color:#fff;font-size:17px;padding:14px 24px}
+.get.small:hover{background:var(--front-2)}
+.note{padding-left:24px;border-left:5px solid var(--brass)}
+.note h2{font-size:26px;letter-spacing:-.02em;margin-bottom:14px}
+.note p{margin:0 0 13px;max-width:32em}
+code{font:400 13.5px/1.5 ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+footer{background:var(--deep);color:#DDF1EF;font-size:16px}
+footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-top:30px;padding-bottom:34px}
+@media (max-width:860px){
+ .wrap{padding:0 20px}
+ body{font-size:17px}
+ .hero-grid{grid-template-columns:minmax(0,1fr);gap:0;padding-top:40px}
+ .hero-copy{padding-bottom:48px}
+ .lede{font-size:20px}
+ .phone{justify-self:center;width:min(330px,100%);height:480px;margin-bottom:0}
+ .front{grid-template-columns:minmax(0,1fr) auto;gap:16px;min-height:96px;padding-top:18px;padding-bottom:18px}
+ .pull{grid-column:1/-1;grid-row:2;width:112px;justify-self:center}
+ .inside .wrap,.after .wrap{grid-template-columns:minmax(0,1fr);gap:26px}
+ .inside p{font-size:20px}
+ .after .wrap{padding-top:54px;padding-bottom:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><img src="assets/icon.svg" alt="">Qabinet</div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Every file in its place.</h1>
+        <p class="lede">Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use, with no ads.</p>
+        <a class="get" href="download/Qabinet-0.2.0.apk" download>Download for Android</a>
+        <p class="meta">Version 0.2.0 beta, 13 MB. Coming to Google Play.</p>
+      </div>
+      <div class="phone" role="img" aria-label="Qabinet Home screen showing pinned folders, storage and file categories">
+        <div class="screen" aria-hidden="true">
+          <div class="bar"><img src="assets/icon.svg" alt="">Qabinet</div>
+          <div class="find">Search files and folders</div>
+          <h2>Pinned</h2>
+          <div class="pins">
+            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#0B7A75" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Work</div>
+            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#C98A1B" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Camera</div>
+            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#5F7596" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Taxes</div>
+            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#D9603F" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Travel</div>
+          </div>
+          <div class="store"><div>Internal storage <span>82 / 128 GB</span></div><b></b></div>
+          <div class="tiles">
+            <div><i><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 16l5-5 4 4 2-2 5 5M15 9.5h.01"/></svg></i>Images</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M4 6h12v12H4zM16 10l5-3v10l-5-3"/></svg></i>Video</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></i>Audio</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h7M9 17h7"/></svg></i>Documents</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></i>Apps</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM12 3v2M12 7v2M12 11v2M10.5 15h3v3h-3z"/></svg></i>Archives</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M4 20h16"/></svg></i>Downloads</div>
+            <div><i><svg viewBox="0 0 24 24"><path d="M6 11h12v9H6zM8.5 11V7.5a3.5 3.5 0 0 1 7 0V11M12 15v1.5"/></svg></i>Private</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="cabinet" aria-label="What Qabinet does">
+  <details class="drawer" name="cabinet" open>
+    <summary><div class="wrap front"><h2>Pinned folders</h2><span class="pull"></span><span class="state"><span class="closed-word">Open</span><span class="open-word">Close</span></span></div></summary>
+    <div class="inside"><div class="wrap">
+      <p>Open a folder and tap the pin. It stays on Home, one tap away, however deep it really lives.</p>
+      <ul><li>Up to 8 pins on Home</li><li>Unlimited saved folders, with colours and groups</li><li>Shortcuts on your phone's home screen</li><li>Saved folders follow when you rename or move them in Qabinet</li></ul>
+    </div></div>
+  </details>
+  <details class="drawer" name="cabinet">
+    <summary><div class="wrap front"><h2>Locked and hidden folders</h2><span class="pull"></span><span class="state"><span class="closed-word">Open</span><span class="open-word">Close</span></span></div></summary>
+    <div class="inside"><div class="wrap">
+      <p>Locked folders are encrypted, so other apps and a connected computer can't read them. Hidden folders simply stay out of sight.</p>
+      <ul><li>Locked: AES-256 encryption of files and file names</li><li>Locks again when you leave the app</li><li>A recovery key if you forget your password</li><li>Hidden: kept out of lists, search and gallery apps, but not encrypted</li></ul>
+    </div></div>
+  </details>
+  <details class="drawer" name="cabinet">
+    <summary><div class="wrap front"><h2>Copying and moving</h2><span class="pull"></span><span class="state"><span class="closed-word">Open</span><span class="open-word">Close</span></span></div></summary>
+    <div class="inside"><div class="wrap">
+      <p>Every copy is read back and compared with the original before Qabinet removes anything.</p>
+      <ul><li>Copy, browse anywhere, then paste</li><li>Pause or cancel long transfers</li><li>Compare both files when names clash</li><li>A Recycle bin that keeps deleted items for 30 days</li></ul>
+    </div></div>
+  </details>
+  <details class="drawer" name="cabinet">
+    <summary><div class="wrap front"><h2>Finding and tidying</h2><span class="pull"></span><span class="state"><span class="closed-word">Open</span><span class="open-word">Close</span></span></div></summary>
+    <div class="inside"><div class="wrap">
+      <p>Search your whole phone by name, type, size or date, or start from a category on Home.</p>
+      <ul><li>List and grid views, sorted the way you like</li><li>Rename many files at once</li><li>Create and open ZIP files, with passwords</li><li>Light, dark and wallpaper colours</li></ul>
+    </div></div>
+  </details>
+  <details class="drawer" name="cabinet">
+    <summary><div class="wrap front"><h2>Your phone, nothing else</h2><span class="pull"></span><span class="state"><span class="closed-word">Open</span><span class="open-word">Close</span></span></div></summary>
+    <div class="inside"><div class="wrap">
+      <p>This version has no internet permission, so Qabinet can't send your files anywhere.</p>
+      <ul><li>Internal storage, SD cards and USB drives</li><li>No ads and no trackers</li><li>Network drives and cloud storage are planned for version 1.0</li></ul>
+    </div></div>
+  </details>
+</section>
+
+<section class="after" id="install">
+  <div class="wrap">
+    <div>
+      <h2>Install the beta</h2>
+      <ol>
+        <li>Download the file on your Android phone. It needs Android 8 or newer.</li>
+        <li>Open it from your downloads. If Android asks, allow your browser to install apps.</li>
+        <li>Open Qabinet and allow file access so it can show your folders.</li>
+      </ol>
+      <a class="get small" href="download/Qabinet-0.2.0.apk" download>Download Qabinet 0.2.0</a>
+    </div>
+    <div class="note">
+      <h2>This is an early beta</h2>
+      <p>Keep a backup of anything important, and try locked folders on copies first.</p>
+      <p>If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
+      <p>To check your download, compare its SHA-256:<br><code>cb7c77e9a0c417fc0adeae2b2dd0d7b2f758572003268cc0b7f6bb98d0211701</code></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Kith + Keen</span>
+    <span>Free for personal use. A commercial licence is coming with Qabinet Pro.</span>
+  </div>
+</footer>
+</body>
+</html>
