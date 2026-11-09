@@ -98,8 +98,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
       <div class="hero-copy">
         <h1>Every file in its place.</h1>
         <p class="lede">Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use, with no ads.</p>
-        <a class="get" href="download/Qabinet-0.4.0.apk" download>Download for Android</a>
-        <p class="meta">Version 0.4.0 beta, 13 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
+        <a class="get" href="download/Qabinet-0.5.0.apk" download>Download for Android</a>
+        <p class="meta">Version 0.5.0 beta, 14 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
       </div>
       <div class="phone" role="img" aria-label="Qabinet Home screen showing pinned folders, storage and file categories">
         <div class="screen" aria-hidden="true">
@@ -140,11 +140,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
     </div>
   </div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Features, scroll sideways">
-    <article class="card"><h3>Pinned folders</h3><p>Open a folder and tap the pin. It stays on Home, one tap away, however deep it really lives.</p><ul><li>Tap once to pin, again to unpin</li><li>The first 8 appear on Home</li><li>Shortcuts on your phone's home screen</li><li>Sort and reorder in the Pinned tab</li></ul></article>
-    <article class="card"><h3>Locked and hidden folders</h3><p>Locked folders are encrypted, so other apps and a connected computer can't read them. Hidden folders simply stay out of sight.</p><ul><li>AES-256 encryption of files and file names</li><li>Locks again when you leave the app</li><li>A recovery key if you forget your password</li><li>Hidden folders are not encrypted</li></ul></article>
+    <article class="card"><h3>Pinned folders</h3><p>Open a folder and tap the pin. It stays in your Pinned tab, one tap away, however deep it really lives.</p><ul><li>Tap once to pin, again to unpin</li><li>Drag them into any order</li><li>Shortcuts on your phone's home screen</li><li>Find a pinned folder again if it moves</li></ul></article>
+    <article class="card"><h3>Locked and hidden folders</h3><p>Locked folders are encrypted, so other apps and a connected computer can't read them. Hidden folders simply stay out of sight.</p><ul><li>AES-256 encryption of files and file names</li><li>Locks again when you leave the app</li><li>Unlock with your fingerprint</li><li>A recovery key if you forget your password</li><li>Hidden folders are not encrypted</li></ul></article>
     <article class="card"><h3>Copying and moving</h3><p>Every copy is read back and compared with the original before Qabinet removes anything.</p><ul><li>Copy, browse anywhere, then paste</li><li>Pause or cancel long transfers</li><li>Compare both files when names clash</li><li>A Recycle bin that keeps items for 30 days</li></ul></article>
     <article class="card"><h3>Finding and tidying</h3><p>Search your whole phone by name, type, size or date, or start from a category on Home.</p><ul><li>List, Details, Compact, Grid and Gallery layouts</li><li>Rename many files at once</li><li>Create and open ZIP files, with passwords</li><li>A pie chart of what's filling your storage</li></ul></article>
-    <article class="card"><h3>Your apps</h3><p>See every installed app with its size, version, install date and permissions.</p><ul><li>Select several and uninstall them together</li><li>Android asks you to confirm each one</li><li>Sort by name, size or date</li></ul></article>
+    <article class="card"><h3>Your apps</h3><p>See every installed app with its size, version, install date and permissions.</p><ul><li>Select several and uninstall them together</li><li>Android asks you to confirm each one</li><li>Back up an app to your phone</li></ul></article>
     <article class="card"><h3>Your phone, nothing else</h3><p>This version has no internet permission, so Qabinet can't send your files anywhere.</p><ul><li>Internal storage, SD cards and USB drives</li><li>No ads and no trackers</li><li>Network drives and cloud storage are planned for 1.0</li></ul></article>
   </div>
 </section>
@@ -158,14 +158,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
         <li>Open it from your downloads. If Android asks, allow your browser to install apps.</li>
         <li>Open Qabinet and allow file access so it can show your folders.</li>
       </ol>
-      <a class="get small" href="download/Qabinet-0.4.0.apk" download>Download Qabinet 0.4.0</a>
+      <a class="get small" href="download/Qabinet-0.5.0.apk" download>Download Qabinet 0.5.0</a>
     </div>
     <div class="note" id="disclaimer">
       <h2>Disclaimer</h2>
       <p>Qabinet is an early beta and has had very little testing on real phones. It may crash, misbehave or lose data.</p>
       <p>It's provided as is, with no warranty of any kind, and you use it at your own risk. Kith + Keen isn't responsible for any loss of files or damage that results.</p>
       <p>Back up anything important before you install it, and try locked folders on copies first. If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
-      <p>To check your download, compare its SHA-256:<br><code>f0582bfa1fa54806f30679c574f1990549496263deedbaa93bbb9df6d917c36e</code></p>
+      <p>To check your download, compare its SHA-256:<br><code>fc0310ae019e72c7ea4a22d481308cb928efd9886ae177f30afddd40de9713bb</code></p>
     </div>
   </div>
 </section>
@@ -221,7 +221,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
 </script>
 <script>
 (function () {
-  var latest = "0.4.0";
+  var latest = "0.5.0";
   var installed = new URLSearchParams(location.search).get("installed");
   if (!installed || !/^\d+(\.\d+)*$/.test(installed)) return;
   function parts(v) { return v.split(".").map(Number); }
