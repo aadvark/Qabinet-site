@@ -85,8 +85,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
       <div class="hero-copy">
         <h1>Every file in its place.</h1>
         <p class="lede">Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use, with no ads.</p>
-        <a class="get" href="download/Qabinet-0.12.0.apk" download>Download for Android</a>
-        <p class="meta">Version 0.12.0 beta, 26 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
+        <a class="get" href="download/Qabinet-0.12.1.apk" download>Download for Android</a>
+        <p class="meta">Version 0.12.1 beta, 26 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
       </div>
       <div class="phone">
         <div class="screen"><img src="assets/home-0.11.webp" width="640" height="1061" alt="Qabinet's Home screen: search, a storage chart by file type, the Recycle bin, shortcuts for Images, Video, Audio, Documents, Downloads, Apps, APK, Archives, Private and Clean, and your Camera, Screenshots, WhatsApp and Telegram folders with counts of new files"></div>
@@ -126,14 +126,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
         <li>Open it from your downloads. If Android asks, allow your browser to install apps.</li>
         <li>Open Qabinet and allow file access so it can show your folders.</li>
       </ol>
-      <a class="get small" href="download/Qabinet-0.12.0.apk" download>Download Qabinet 0.12.0</a>
+      <a class="get small" href="download/Qabinet-0.12.1.apk" download>Download Qabinet 0.12.1</a>
     </div>
     <div class="note" id="disclaimer">
       <h2>Disclaimer</h2>
       <p>Qabinet is an early beta and has had very little testing on real phones. It may crash, misbehave or lose data.</p>
       <p>It's provided as is, with no warranty of any kind, and you use it at your own risk. Kith + Keen isn't responsible for any loss of files or damage that results.</p>
       <p>Back up anything important before you install it, and try locked folders on copies first. If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
-      <p>To check your download, compare its SHA-256:<br><code>3b4ae35948cf478881d9c4334ea0b9c4c34c684ddef3ff7ff6ec4b77a037d349</code></p>
+      <p>To check your download, compare its SHA-256:<br><code>31d8bd3c35ba6d98fe5a3f5b713a0c65a46fd8538f2421c8bca71f6c5f35bcd7</code></p>
     </div>
   </div>
 </section>
@@ -189,7 +189,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
 </script>
 <script>
 (function () {
-  var latest = "0.12.0";
+  var latest = "0.12.1";
   var installed = new URLSearchParams(location.search).get("installed");
   if (!installed || !/^\d+(\.\d+)*$/.test(installed)) return;
   function parts(v) { return v.split(".").map(Number); }
