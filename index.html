@@ -32,22 +32,9 @@ h1{margin:0;font-size:clamp(34px,4.6vw,52px);line-height:1.04;font-weight:600;le
 .get{display:inline-block;margin-top:22px;padding:11px 20px;border-radius:9px;background:var(--brass);color:var(--ink);font-size:15px;font-weight:600;text-decoration:none;transition:background .15s}
 .get:hover{background:var(--brass-lit)}
 .meta{margin:10px 0 0;font-size:13px;color:#DDF1EF}
-.phone{zoom:.75;width:330px;height:500px;margin-bottom:0;padding:12px 12px 0;border-radius:44px 44px 0 0;background:#07403E;align-self:end}
-.screen{height:100%;padding:22px 16px;border-radius:33px 33px 0 0;background:var(--paper);color:var(--ink);font-size:13px;line-height:1.3;overflow:hidden}
-.bar{display:flex;align-items:center;gap:9px;font-size:19px;font-weight:600;letter-spacing:-.3px}
-.bar img{width:26px;height:26px;border-radius:7px}
-.find{margin-top:14px;padding:12px 15px;border-radius:22px;background:#E7EBF0;color:var(--mid);font-size:14px}
-.screen h2{margin:18px 0 9px;font-size:14px;font-weight:600}
-.pins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;font-size:11.5px;font-weight:500}
-.pin i{display:flex;align-items:center;justify-content:center;height:56px;margin-bottom:6px;border:1px solid var(--line);border-radius:15px;background:#fff}
-.pin svg{width:27px;height:27px}
-.store{margin-top:16px;padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:#fff}
-.store div{display:flex;justify-content:space-between;font-weight:600}
-.store span{font-weight:400;color:var(--mid)}
-.store b{display:block;height:7px;margin-top:9px;border-radius:4px;background:linear-gradient(90deg,var(--teal) 64%,#E7EBF0 64%)}
-.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:13px 6px;margin-top:17px;text-align:center;font-size:11.5px}
-.tiles i{display:flex;align-items:center;justify-content:center;width:42px;height:42px;margin:0 auto 5px;border-radius:13px;background:#DDF1EF;color:var(--teal)}
-.tiles svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.phone{zoom:.75;width:330px;height:520px;margin-bottom:0;padding:12px 12px 0;border-radius:44px 44px 0 0;background:#07403E;align-self:end}
+.screen{height:100%;border-radius:33px 33px 0 0;background:var(--paper);overflow:hidden}
+.screen img{display:block;width:100%;height:auto}
 .features{background:var(--deep);color:#fff;padding:30px 0 32px}
 .features-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
 .features-head h2{margin:0;font-size:20px;font-weight:600;letter-spacing:-.02em}
@@ -101,29 +88,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
         <a class="get" href="download/Qabinet-0.11.0.apk" download>Download for Android</a>
         <p class="meta">Version 0.11.0 beta, 23 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
       </div>
-      <div class="phone" role="img" aria-label="Qabinet Home screen showing pinned folders, storage and file categories">
-        <div class="screen" aria-hidden="true">
-          <div class="bar"><img src="assets/icon.svg" alt="">Qabinet</div>
-          <div class="find">Search files and folders</div>
-          <h2>Pinned</h2>
-          <div class="pins">
-            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#0B7A75" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Work</div>
-            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#C98A1B" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Camera</div>
-            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#5F7596" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Taxes</div>
-            <div class="pin"><i><svg viewBox="0 0 24 24"><path fill="#D9603F" d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></i>Travel</div>
-          </div>
-          <div class="store"><div>Internal storage <span>82 / 128 GB</span></div><b></b></div>
-          <div class="tiles">
-            <div><i><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 16l5-5 4 4 2-2 5 5M15 9.5h.01"/></svg></i>Images</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M4 6h12v12H4zM16 10l5-3v10l-5-3"/></svg></i>Video</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM19 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></i>Audio</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M6 3h8l5 5v13H6zM14 3v5h5M9 13h7M9 17h7"/></svg></i>Documents</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></i>Apps</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM12 3v2M12 7v2M12 11v2M10.5 15h3v3h-3z"/></svg></i>Archives</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M4 20h16"/></svg></i>Downloads</div>
-            <div><i><svg viewBox="0 0 24 24"><path d="M6 11h12v9H6zM8.5 11V7.5a3.5 3.5 0 0 1 7 0V11M12 15v1.5"/></svg></i>Private</div>
-          </div>
-        </div>
+      <div class="phone">
+        <div class="screen"><img src="assets/home-0.11.webp" width="640" height="1061" alt="Qabinet's Home screen: search, a storage chart by file type, the Recycle bin, shortcuts for Images, Video, Audio, Documents, Downloads, Apps, APK, Archives, Private and Clean, and your Camera, Screenshots, WhatsApp and Telegram folders with counts of new files"></div>
       </div>
     </div>
   </div>
@@ -141,10 +107,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
   </div>
   <div class="track" id="track" tabindex="0" role="group" aria-label="Features, scroll sideways">
     <article class="card"><h3>Pinned folders</h3><p>Open a folder and tap the pin. It stays in your Pinned tab, one tap away, however deep it really lives.</p><ul><li>Tap once to pin, again to unpin</li><li>Drag them into any order</li><li>Shortcuts on your phone's home screen</li><li>Find a pinned folder again if it moves</li></ul></article>
-    <article class="card"><h3>Private and hidden</h3><p>Move any files or folders into Private and they're encrypted, so other apps and a connected computer can't open them. Hidden folders simply stay out of sight.</p><ul><li>AES-256 encryption of files and file names</li><li>Restore puts each item back where it came from</li><li>Locks when you leave, or after a time you choose</li><li>Unlock with your fingerprint</li><li>A recovery key if you forget your password</li><li>Hidden folders are not encrypted</li></ul></article>
-    <article class="card"><h3>Copying and moving</h3><p>Every copy is read back and compared with the original before Qabinet removes anything.</p><ul><li>Copy, browse anywhere, then paste</li><li>Undo a copy, move or rename</li><li>Pause or cancel long transfers</li><li>Compare both files when names clash</li><li>A Recycle bin that keeps items for 30 days</li></ul></article>
-    <article class="card"><h3>Finding and tidying</h3><p>Search your whole phone by name, type, size or date, or start from a category on Home.</p><ul><li>List, Details, Compact, Grid and Gallery layouts</li><li>Rename many files at once</li><li>Create ZIP files, and open ZIP, RAR and 7z</li><li>A pie chart of what's filling your storage</li><li>A video player with swipe gestures, subtitles and picture in picture</li><li>Full-screen photos with crop, rotate and colour adjustments</li><li>Music that keeps playing in the background</li><li>Tabs, and a quick editor for text files</li></ul></article>
-    <article class="card"><h3>Clean</h3><p>Tap Analyse to see what's wasting space, review it, then send it to the Recycle bin.</p><ul><li>Temp files and empty folders</li><li>Leftovers from apps you've removed</li><li>Large and old files, and each app's cache</li><li>A separate duplicate check, by type, always keeping one copy</li></ul></article>
+    <article class="card"><h3>Private and hidden</h3><p>Move any files or folders into Private and they're encrypted, so other apps and a connected computer can't open them. Hidden folders simply stay out of sight.</p><ul><li>AES-256 encryption of files and file names</li><li>Restore puts each item back where it came from</li><li>Locks when you leave, or after a time you choose</li><li>Unlock with your fingerprint</li><li>A recovery key if you forget your password</li><li>Lock any folder with its own password, right where it is</li><li>Hidden folders are not encrypted</li></ul></article>
+    <article class="card"><h3>Copying and moving</h3><p>Every copy is read back and compared with the original before Qabinet removes anything.</p><ul><li>Copy, browse anywhere, then paste</li><li>Undo a copy, move or rename</li><li>Pause or cancel long transfers, and they carry on if Android closes Qabinet</li><li>Save files shared from any app into the folder you choose</li><li>Compare both files when names clash</li><li>A Recycle bin that keeps items for 30 days</li></ul></article>
+    <article class="card"><h3>Finding and tidying</h3><p>Search your whole phone by name, type, size or date, or start from a category on Home.</p><ul><li>List, Details, Compact, Grid and Gallery layouts</li><li>Rename many files at once</li><li>Create ZIP files, and look inside ZIP, RAR, 7z and tar</li><li>Split big files into parts and join them again</li><li>A pie chart of what's filling your storage</li><li>Tabs, and a text editor with find and replace</li></ul></article>
+    <article class="card"><h3>Photos, video and music</h3><p>Open them right inside Qabinet, or send them to your TV.</p><ul><li>A video player with swipe gestures, subtitles and picture in picture</li><li>Full-screen photos with crop, rotate and colour adjustments</li><li>Music that keeps playing in the background</li><li>Remove a photo's location before you share it</li><li>Turn HEIC photos into JPG, and make smaller copies of videos</li></ul></article>
+    <article class="card"><h3>Clean</h3><p>Tap Analyse to see what's wasting space, review it, then send it to the Recycle bin.</p><ul><li>Temp files and empty folders</li><li>Leftovers from apps you've removed</li><li>Large and old files, and each app's cache</li><li>A separate duplicate check, by type, always keeping one copy</li><li>Similar photos, chat app media and screenshots</li></ul></article>
     <article class="card"><h3>Your apps</h3><p>See every installed app with its size, version, install date and permissions.</p><ul><li>Select several and uninstall them together</li><li>Android asks you to confirm each one</li><li>Back up an app to your phone</li></ul></article>
     <article class="card"><h3>Your files, your choice</h3><p>Qabinet only connects to places you choose, like a TV to cast to.</p><ul><li>Internal storage, SD cards and USB drives</li><li>Cast to Chromecast and DLNA TVs on your Wi-Fi</li><li>No ads and no trackers</li><li>In 15 languages, including Chinese, Japanese, Korean, Hindi, Thai and Arabic</li><li>Network folders over SMB, FTP, SFTP and WebDAV</li><li>Open your phone from a computer's web browser</li><li>Send files to a nearby phone, no internet needed</li><li>Cloud storage is coming next</li></ul></article>
   </div>
