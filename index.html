@@ -98,8 +98,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
       <div class="hero-copy">
         <h1>Every file in its place.</h1>
         <p class="lede">Pin the folders you use most, lock the private ones and find the rest fast. Free for personal use, with no ads.</p>
-        <a class="get" href="download/Qabinet-0.10.0.apk" download>Download for Android</a>
-        <p class="meta">Version 0.10.0 beta, 22 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
+        <a class="get" href="download/Qabinet-0.11.0.apk" download>Download for Android</a>
+        <p class="meta">Version 0.11.0 beta, 23 MB. Early release, used at your own risk. <a href="#disclaimer">Read the disclaimer</a> first.</p>
       </div>
       <div class="phone" role="img" aria-label="Qabinet Home screen showing pinned folders, storage and file categories">
         <div class="screen" aria-hidden="true">
@@ -159,14 +159,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
         <li>Open it from your downloads. If Android asks, allow your browser to install apps.</li>
         <li>Open Qabinet and allow file access so it can show your folders.</li>
       </ol>
-      <a class="get small" href="download/Qabinet-0.10.0.apk" download>Download Qabinet 0.10.0</a>
+      <a class="get small" href="download/Qabinet-0.11.0.apk" download>Download Qabinet 0.11.0</a>
     </div>
     <div class="note" id="disclaimer">
       <h2>Disclaimer</h2>
       <p>Qabinet is an early beta and has had very little testing on real phones. It may crash, misbehave or lose data.</p>
       <p>It's provided as is, with no warranty of any kind, and you use it at your own risk. Kith + Keen isn't responsible for any loss of files or damage that results.</p>
       <p>Back up anything important before you install it, and try locked folders on copies first. If you lose both your password and your recovery key, locked files can't be recovered. Nobody can reset them for you.</p>
-      <p>To check your download, compare its SHA-256:<br><code>edb2f2c0bf3ebd21f047f94f4d5603f19412a9e54ee6580c1b6021c0409944b9</code></p>
+      <p>To check your download, compare its SHA-256:<br><code>0369c6dfd69e677656ac472984bfd342faf3fa64209b9872ac6dd3b4a41780f6</code></p>
     </div>
   </div>
 </section>
@@ -222,7 +222,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px 28px;flex-wrap:
 </script>
 <script>
 (function () {
-  var latest = "0.10.0";
+  var latest = "0.11.0";
   var installed = new URLSearchParams(location.search).get("installed");
   if (!installed || !/^\d+(\.\d+)*$/.test(installed)) return;
   function parts(v) { return v.split(".").map(Number); }
